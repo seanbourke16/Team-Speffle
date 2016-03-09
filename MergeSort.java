@@ -15,7 +15,38 @@ public class MergeSort {
      ******************************************************/
     private static int[] merge( int[] a, int[] b ) 
     {
+	int[] retArr = new int[ a.length + b.length ];
 
+	//init position markers for each input array
+	int aPos = 0;
+	int bPos = 0;
+
+	int pos = 0; //position marker for return array
+
+	while( aPos < a.length && bPos < b.length ) {
+	    if ( a[aPos] < b[bPos] ) {
+		retArr[pos] = a[aPos];
+		aPos++;
+	    }
+	    else {
+		retArr[pos] = b[bPos];
+		bPos++;
+	    }
+	    pos++;
+	}
+	//at least one input array has been exhausted
+	if ( bPos >= b.length )
+	    for( ; pos < retArr.length; pos++ ) {
+		retArr[pos] = a[aPos]; 
+		aPos++;
+	    }
+	else
+	    for( ; pos < retArr.length; pos++ ) {
+		retArr[pos] = b[bPos]; 
+		bPos++;
+	    }
+
+	return retArr;
     }//end merge()
 
 
@@ -26,7 +57,23 @@ public class MergeSort {
      ******************************************************/
     public static int[] sort( int[] arr ) 
     {
+	//if dataset is 1 element, then dataset is sorted
+	if ( arr.length <= 1 ) 
+	    return arr;
 
+	//else, halve dataset and recurse on each half
+	int leftLen = arr.length / 2;
+	int[] leftHalf = new int[ leftLen ];
+	int[] rightHalf = new int[ arr.length - leftLen ];
+
+	for( int i=0; i<arr.length; i++ ) {
+	    if ( i < leftLen )
+		leftHalf[i] = arr[i];
+	    else
+		rightHalf[ i-leftLen ] = arr[i];
+	}
+
+	return merge( sort(leftHalf), sort(rightHalf) );
     }//end sort()
 
 
@@ -38,6 +85,7 @@ public class MergeSort {
 	for( int i = 0 ; i<a.length; i++ )
 	    a[i] = 0;
     }
+
 
     //helper method for displaying an array
     public static void printArray( int[] a ) {
@@ -52,7 +100,6 @@ public class MergeSort {
     //main method for testing
     public static void main( String [] args ) {
 
-	/*~~~~~~~~~~~~~~ Ye Olde Tester Bar ~~~~~~~~~~~~~~
 	int[] arr0 = {0};
 	int[] arr1 = {1};
 	int[] arr2 = {1,2};
@@ -61,19 +108,24 @@ public class MergeSort {
 	int[] arr5 = {4,3,2,1};
 	int[] arr6 = {9,42,17,63,0,512,23};
 	int[] arr7 = {9,42,17,63,0,9,512,23,9};
+
 	System.out.println("\nTesting mess-with-array method...");
 	printArray( arr3 );
 	mess(arr3);
 	printArray( arr3 );
+
 	System.out.println("\nMerging arr1 and arr0: ");
 	printArray( merge(arr1,arr0) );
+
 	System.out.println("\nMerging arr4 and arr6: ");
 	printArray( merge(arr4,arr6) );
+
 	System.out.println("\nSorting arr4-7...");
 	printArray( sort( arr4 ) );
 	printArray( sort( arr5 ) );
 	printArray( sort( arr6 ) );
 	printArray( sort( arr7 ) );
+	/*~~~~~~~~~~~~~~ Ye Olde Tester Bar ~~~~~~~~~~~~~~
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     }//end main()
 
