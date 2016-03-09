@@ -3,7 +3,12 @@
   ALGORITHM:
   <INSERT YOUR DISTILLATION OF ALGO HERE>
   BIG-OH CLASSIFICATION OF ALGORITHM:
-  <INSERT YOUR EXECUTION TIME CATEGORIZATION OF MERGESORT HERE>
+  My trio came up with a runtime of O(nlog(n)). We split the alogithm into 
+two parts: the splitting up of the numbers and the merging of the numbers.
+The first part of the algorithm is O(n). This is because it touches every 
+element once before its done. The second part is O(nlog(n)) because it goes 
+through every element multiple times but not quite n^2. This would make the 
+total for the algoritm O(n+nlog(n)) but this is effectivly O(nlog(n)).
   Mean execution times for dataset of size n:
   Batch size: <# of times each dataset size was run>
   n=1       time: 
