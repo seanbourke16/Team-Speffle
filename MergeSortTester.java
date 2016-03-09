@@ -26,6 +26,11 @@ total for the algoritm O(n+nlog(n)) but this is effectivly O(nlog(n)).
 
 public class MergeSortTester 
 {
+  public void populate (int arr_size, int[] arr) {
+    for(int i = 0; i < arr_size; i++) {
+            arr[i] = (int)(50 * Math.random());
+        }
+  }
 
     /******************************
      * execution time analysis 
@@ -35,7 +40,38 @@ public class MergeSortTester
      ******************************/
     public static void main( String[] args ) 
     {
+     for(int i = 0; i < 1000000; i++) {
+            int valToAdd = (int)(50 * Math.random());
+            
+        }
 
+        double linearTime = 0;
+        long initial;
+
+        // Repeating 10 times, try finding each element of the OAL and time it
+
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < Franz.size(); j++) {
+                initial = System.nanoTime();
+                Franz.findLin(Franz.get(j));
+                linearTime += System.nanoTime() - initial;
+            }
+        }
+
+        double binaryTime = 0;
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < Franz.size(); j++) {
+                initial = System.nanoTime();
+                Franz.findBin(Franz.get(j));
+                binaryTime += System.nanoTime() - initial;
+            }
+        }
+        // Average the times
+        linearTime /= Franz.size() * 10;
+        binaryTime /= Franz.size() * 10;
+
+        System.out.println("Linear search took an average of " + linearTime + " milliseconds.");
+        System.out.println("Binary search took an average of " + binaryTime + " milliseconds.");
     }//end main
 
 }//end class
