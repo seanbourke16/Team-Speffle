@@ -26,8 +26,8 @@ total for the algoritm O(n+nlog(n)) but this is effectivly O(nlog(n)).
 
 public class MergeSortTester 
 {
-  public void populate (int arr_size, int[] arr) {
-    for(int i = 0; i < arr_size; i++) {
+  public static void populate (int[] arr) {
+    for(int i = 0; i < arr.length; i++) {
             arr[i] = (int)(50 * Math.random());
         }
   }
@@ -40,38 +40,22 @@ public class MergeSortTester
      ******************************/
     public static void main( String[] args ) 
     {
-     for(int i = 0; i < 1000000; i++) {
-            int valToAdd = (int)(50 * Math.random());
-            
-        }
-
-        double linearTime = 0;
+	int[] Franz = new int[10];
+        double Time = 0;
         long initial;
 
-        // Repeating 10 times, try finding each element of the OAL and time it
+	populate(Franz);
 
         for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < Franz.size(); j++) {
-                initial = System.nanoTime();
-                Franz.findLin(Franz.get(j));
-                linearTime += System.nanoTime() - initial;
-            }
+             initial = System.nanoTime();
+             MergeSort.sort(Franz);
+             Time += System.nanoTime() - initial;
         }
 
-        double binaryTime = 0;
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < Franz.size(); j++) {
-                initial = System.nanoTime();
-                Franz.findBin(Franz.get(j));
-                binaryTime += System.nanoTime() - initial;
-            }
-        }
         // Average the times
-        linearTime /= Franz.size() * 10;
-        binaryTime /= Franz.size() * 10;
+        Time /= 10;
 
-        System.out.println("Linear search took an average of " + linearTime + " milliseconds.");
-        System.out.println("Binary search took an average of " + binaryTime + " milliseconds.");
+        System.out.println("Merge Sort took an average of " + Time + " nanoseconds.");
     }//end main
 
 }//end class
