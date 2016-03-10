@@ -26,8 +26,8 @@ total for the algoritm O(n+nlog(n)) but this is effectivly O(nlog(n)).
   The sort is extremely efficient. As can be seen with the results, the runtime execution
   times increase relatively slowly from n sizes from 1 to 100. Then it increases in a 
   manner that more closely resembles 10s (where s = log(n - 10000) where n >= 10000), as
-  n moves past 10000. This indicates that the runtime increases in a manner faster than
-  O(n) and slower than O(n^2), thereby reinforcing that merge sort runs with O(nlog(n)).
+  n moves past 10000. This indicates that the runtime increases in a manner slower than
+  O(n) and faster than O(n^2), thereby reinforcing that merge sort runs with O(nlog(n)).
   ======================================*/
 
 public class MergeSortTester 
